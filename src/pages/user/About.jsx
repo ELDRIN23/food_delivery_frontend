@@ -1,41 +1,58 @@
-import React from 'react'
+import React from 'react';
 
 const About = () => {
   return (
-    <div className=''>
-    <strong>
-    <h1>About Us</h1>
-    </strong>
-      <br></br>
-      <h3>
-         FOODIE Industries Pvt Ltd. was envisioned and brought to life by our visionary co-founder,<strong>Eldrin Johnson</strong> ,
-         whose passion for culinary innovation and customer-centric service laid the foundation for our success.
-         With a deep understanding of food trends and a relentless drive for excellence, Eldrin has been
-         instrumental in shaping the company’s mission and values. His leadership has propelled FOODIE          
-         from a humble venture to a trusted name in the food industry, serving countless satisfied customers since
-          its inception in 1992. Under his strategic guidance, the company continues to thrive, embracing innovation 
-          while staying true to its core values.
-      </h3>
-      <br></br>
-      <h3>
-         At FOODIE Industries Pvt Ltd., we uphold the highest industry standards to ensure quality, safety, and 
-         compliance in every aspect of our operations. Our licenses and certifications demonstrate our unwavering
-         commitment to excellence. We hold an FSSAI certification, ensuring adherence to food safety and hygiene
-         regulations. Our ISO 9001:2015 certification reflects our dedication to maintaining superior customer 
-         experiences through quality management systems. We are fully certified for eco-friendly and sustainable
-         business operations, complying with all environmental regulations. Additionally, we possess all required 
-         trade licenses to operate legally at the local, state, and federal levels. Our brand and intellectual
-          property are protected through trademark registration, ensuring authenticity and originality. Since
-           1992, we have remained dedicated to transparency, legal compliance, and delivering delightful
-            culinary experiences, staying true to our motto: "Foodie — Your Comfort, Our Pleasure."
-            </h3>
-            <br></br>
-            <strong>
-            <h1>"Foodie — Your Comfort, Our Pleasure."</h1>
-            </strong>
-       
-      
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
+      {/* Main Content */}
+      <div className="flex-grow p-12 flex flex-col justify-center items-center text-center">
+        <strong className="text-6xl font-bold text-gray-100 mb-8">
+          About Us
+        </strong>
+
+        <p className="text-xl text-gray-300 max-w-5xl leading-relaxed">
+          <strong className="text-gray-100">FOODIE Industries Pvt Ltd.</strong> was founded by 
+          <strong> Eldrin Johnson</strong>, a visionary leader with an enduring passion for culinary innovation. 
+          Since our inception in 2010, we have been committed to setting new benchmarks in the food industry. 
+          Under Eldrin’s strategic leadership, FOODIE has grown from a humble startup to a globally recognized brand, 
+          serving countless satisfied customers.
+        </p>
+
+        <br />
+
+        <p className="text-xl text-gray-300 max-w-5xl leading-relaxed">
+          At <strong className="text-gray-100">FOODIE Industries Pvt Ltd.</strong>, we adhere to the highest industry standards, 
+          ensuring quality, safety, and compliance at every level. We are proud holders of an 
+          <strong> FSSAI certification</strong> for food safety and hygiene, along with the 
+          <strong> ISO 9001:2015 certification</strong>, which reflects our unwavering commitment to superior quality management. 
+          Sustainability is at the heart of our operations, and we maintain eco-friendly practices while delivering premium culinary experiences.
+        </p>
+
+        <br />
+
+        <p className="text-xl text-gray-300 max-w-5xl leading-relaxed">
+          Our menu is a perfect blend of tradition and innovation, crafted by expert chefs dedicated to excellence. 
+          From casual meals to fine dining, we take pride in offering delightful flavors, premium ingredients, 
+          and exceptional service. Every dish we serve is backed by our trademark protection, ensuring authenticity 
+          and originality in every bite.
+        </p>
+
+        <br />
+
+        <p className="text-xl text-gray-300 max-w-5xl leading-relaxed">
+          With three decades of experience, we continue to push the boundaries of the food industry. 
+          Our mission is simple: to create memorable dining experiences while maintaining transparency, 
+          legal compliance, and customer satisfaction.
+        </p>
+
+        <br />
+
+        <strong className="text-4xl font-semibold text-gray-100 mt-8">
+          "Foodie — Your Comfort, Our Pleasure."
+        </strong>
+      </div>
     </div>
-  )
-}
-export default About
+  );
+};
+
+export default About;
+

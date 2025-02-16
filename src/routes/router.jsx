@@ -7,7 +7,7 @@ import Login from "../pages/shared/Login";
 import About from "../pages/user/About";
 import Contact from "../pages/user/Contact";
 import Dishes from "../pages/user/Dishes";
-import Cart from "../pages/user/Cart";
+import AddToCart from "../pages/user/Cart";
 import ErrorPage from "../pages/shared/ErrorPage";
 
 const Router = () => {
@@ -21,7 +21,12 @@ const Router = () => {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="dishes" element={<Dishes />} />
-        <Route path="cart" element={<Cart />} />
+        {/* <Route path="cart" element={<AddToCart />} /> */}
+        <Route path="/AddToCart/:id" element={<AddToCart />} />
+        
+
+
+
         {/* Catch-all for unmatched routes inside layout */}
         <Route path="*" element={<ErrorPage />} />
       </Route>
