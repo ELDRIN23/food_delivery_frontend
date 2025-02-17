@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../config/axiosInstance"; // Import Axios instance
+import { getCartItems } from "../../service/cartManagement";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -8,10 +9,9 @@ const Cart = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await axiosInstance.get("/cart/get", {
-          params: { user_id: "user123" }, // Replace with actual user ID
-        });
-        setCartItems(response.data.cart); // Assuming API returns { cart: [...] }
+        const response = await getCartItems()
+        console.log(response)
+        setCartItems(response.data.dishes); // Assuming API returns { cart: [...] }
       } catch (error) {
         console.error("Error fetching cart items:", error);
       }
@@ -28,10 +28,10 @@ const Cart = () => {
       });
 
       if (response.status === 200) {
-        setCartItems(cartItems.filter((item) => item.dish_id !== dishId));
+        setCartItems(cartItems.filter((item) => item?.dish_id !== dishId));
         alert("Item removed!");
       } else {
-        alert("Failed to remove item.");
+        alert("Failed to remove item?.");
       }
     } catch (error) {
       console.error("Error removing item:", error);
@@ -47,16 +47,16 @@ const Cart = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
             {cartItems.map((item) => (
-              <div key={item.dish_id} className="card bg-base-100 w-96 shadow-xl">
+              <div key={item?._id} className="card bg-base-100 w-96 shadow-xl">
                 <figure>
-                  <img src={item.image} alt="dish" className="w-full h-40 object-cover" />
+                  <img src={item?.image} alt="dish" className="w-full h-40 object-cover" />
                 </figure>
                 <div className="card-body">
-                  <h1 className="card-title">{item.dish_name}</h1>
-                  <p>Price: {item.price_per_item} Rs</p>
+                  <h1 className="card-title">{item?.dish_name}</h1>
+                  <p>Price: {item?.price_per_item} Rs</p>
                   <button
                     className="btn btn-danger mt-2"
-                    onClick={() => removeFromCart(item.dish_id)}
+                    onClick={() => removeFromCart(item?.dish_id)}
                   >
                     Remove from Cart
                   </button>

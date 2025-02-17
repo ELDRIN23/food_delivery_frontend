@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { DishCards } from '../../components/User/Cards';
-import { axiosInstance } from '../../config/axiosInstance';
+import React, { useEffect, useState } from "react";
+import { DishCards } from "../../components/User/Cards";
+import { axiosInstance } from "../../config/axiosInstance";
 
 const Dishes = () => {
   const [dishList, setDishList] = useState([]);
@@ -8,15 +8,15 @@ const Dishes = () => {
   const fetchDishes = async () => {
     try {
       const response = await axiosInstance({
-        method: 'GET',
-        url: '/dishes/',
+        method: "GET",
+        url: "/dishes/",
       });
       setDishList(response?.data);
     } catch (err) {
       console.log(err);
     }
   };
-
+ 
   useEffect(() => {
     fetchDishes();
   }, []);
@@ -32,7 +32,9 @@ const Dishes = () => {
               <DishCards key={dishes?._id || index} dishes={dishes} />
             ))
           ) : (
-            <p className="text-gray-500 text-center col-span-full">No dishes available</p>
+            <p className="text-gray-500 text-center col-span-full">
+              No dishes available
+            </p>
           )}
         </section>
       </div>
@@ -41,10 +43,6 @@ const Dishes = () => {
 };
 
 export default Dishes;
-
-
-
-
 
 // import React, { useEffect, useState } from 'react'
 // import { DishCards } from '../../components/User/Cards'
@@ -65,10 +63,10 @@ export default Dishes;
 //       setDishList(response?.data)
 //     } catch (err) {
 //       console.log(err);
-      
+
 //     }
 //   }
-   
+
 // useEffect(()=>{
 //   fetchDishes()
 // },[])
@@ -89,7 +87,6 @@ export default Dishes;
 // //   }, []);
 // ///////////////////////////////////////////////////////////////
 //   return (
-    
 
 // <div className="flex flex-col items-center justify-start px-20 py-16">
 // <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
@@ -105,14 +102,4 @@ export default Dishes;
 //   )
 // }
 
-
-
 // export default Dishes
-
-
-
-
-
-
-
-
