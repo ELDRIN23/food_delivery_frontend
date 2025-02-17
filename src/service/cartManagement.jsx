@@ -44,3 +44,11 @@ export const clearCart = (user_id, dish_id) => {
     params: { user_id, dish_id },
   });
 };
+
+
+
+
+
+
+
+// foodie
