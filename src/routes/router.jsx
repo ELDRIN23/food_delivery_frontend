@@ -16,6 +16,8 @@ import { AuthContext } from "../context/AuthContext";
 import CheckAuth from "../components/common/CheckAuth";
 import UnAuth from "../pages/UnAuth/UnAuth";
 import Cart from "../pages/user/Cart";
+import AdminDishes from "../pages/Admin/AdminDishes";
+// import AdminRestaurants from "../pages/Admin/AdminRestaurants";
 
 const Router = () => {
   const { isLoggedIn ,role} = useContext(AuthContext);
@@ -50,7 +52,9 @@ const Router = () => {
           </CheckAuth>
         }
       >
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route index element={<Dashboard />} />
+        <Route path="dishes" element={<AdminDishes />} />
+        {/* <Route path="restaurents" element={<AdminRestaurants />} /> */}
         <Route path="products" element={<Products />} />
         <Route path="features" element={<Features />} />
       </Route>

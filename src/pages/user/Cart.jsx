@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../config/axiosInstance"; // Import Axios instance
-import { getCartItems } from "../../service/cartManagement";
+import { getCartItems, deleteCartItem } from "../../service/cartManagement";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -21,22 +21,41 @@ const Cart = () => {
   }, []);
 
   // Remove Item from Cart
+  // const removeFromCart = async (dishId) => {
+  //   try {
+  //     const response = await axiosInstance.delete("/cart/remove", {
+  //       data: { user_id: "user123", dish_id: dishId }, // Backend requires `data` in DELETE request
+  //     });
+
+  //     if (response.status === 200) {
+  //       setCartItems(cartItems.filter((item) => item?.dish_id !== dishId));
+    
+  //       alert("Item removed!");
+  //     } else {
+  //       alert("Failed to remove item?.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error removing item:", error);
+  //   }
+  // };
+
   const removeFromCart = async (dishId) => {
     try {
-      const response = await axiosInstance.delete("/cart/remove", {
-        data: { user_id: "user123", dish_id: dishId }, // Backend requires `data` in DELETE request
-      });
-
+      console.log("Removing item with ID:", dishId);
+      const response = await deleteCartItem(dishId); // Ensure correct API call
+       console.log(response)
       if (response.status === 200) {
-        setCartItems(cartItems.filter((item) => item?.dish_id !== dishId));
-        alert("Item removed!");
+        setCartItems((prevItems) => prevItems.filter((item) => item?.dish_id !== dishId));
+        fetchCartItems();
       } else {
-        alert("Failed to remove item?.");
+        alert("Failed to remove item.");
       }
     } catch (error) {
       console.error("Error removing item:", error);
     }
   };
+  
+  
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white">
@@ -57,6 +76,7 @@ const Cart = () => {
                   <button
                     className="btn btn-danger mt-2"
                     onClick={() => removeFromCart(item?.dish_id)}
+                   
                   >
                     Remove from Cart
                   </button>
