@@ -17,7 +17,7 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
     isAuthenticated &&
     (location.pathname === "/login" || location.pathname === "/signup")
   ) {
-    return <Navigate to={user === "admin" ? "/admin/dashboard" : "/"} />;
+    return <Navigate to={user === "admin" ? "/admin" : "/"} />;
   }
 
   if (
@@ -40,3 +40,9 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
 };
 
 export default CheckAuth;
+
+
+
+
+
+

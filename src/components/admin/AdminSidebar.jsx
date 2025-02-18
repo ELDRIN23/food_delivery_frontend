@@ -10,7 +10,7 @@ const AdminSidebar = () => {
 
   const menuItems = [
     { name: "Dashboard", path: "/admin", icon: <LayoutDashboard className="w-6 h-6" /> },
-    { name: "Restaurant", path: "/admin/restaurant", icon: <MdRestaurantMenu className="w-6 h-6" /> },
+    { name: "Restaurant", path: "/admin/restaurents", icon: <MdRestaurantMenu className="w-6 h-6" /> },
     { name: "Users", path: "/admin/users", icon: <FaUsers className="w-6 h-6" /> },
     { name: "Dishes", path: "/admin/dishes", icon: <FaUtensils className="w-6 h-6" /> },
     { name: "Settings", path: "/admin/settings", icon: <Settings className="w-6 h-6" /> },
