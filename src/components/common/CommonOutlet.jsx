@@ -32,7 +32,7 @@ const OutletComponent = () => {
           </div>
         </div>
         <button
-          onClick={() => navigate("/Signup")}
+          onClick={() => navigate("/signup")}
           className="mt-8 bg-purple-800 text-white hover:bg-purple-900 px-8 py-4 text-lg font-medium rounded-md"
         >
           Order Now
