@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaUtensils, FaUsers, FaHome, FaBars } from "react-icons/fa";
+import { FaUtensils, FaUsers } from "react-icons/fa";
 import { MdRestaurantMenu } from "react-icons/md";
-import { LayoutDashboard, Menu, Settings, User, X } from "lucide-react";
+import { LayoutDashboard, Menu, Settings, X } from "lucide-react";
 
 const AdminSidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -10,10 +10,11 @@ const AdminSidebar = () => {
 
   const menuItems = [
     { name: "Dashboard", path: "/admin", icon: <LayoutDashboard className="w-6 h-6" /> },
-    { name: "Restaurant", path: "/admin/restaurents", icon: <MdRestaurantMenu className="w-6 h-6" /> },
+    { name: "Restaurant", path: "/admin/restaurants", icon: <MdRestaurantMenu className="w-6 h-6" /> },
     { name: "Users", path: "/admin/users", icon: <FaUsers className="w-6 h-6" /> },
     { name: "Dishes", path: "/admin/dishes", icon: <FaUtensils className="w-6 h-6" /> },
     { name: "Settings", path: "/admin/settings", icon: <Settings className="w-6 h-6" /> },
+    { name: "View Restaurants", path: "/admin/view-restaurants", icon: <MdRestaurantMenu className="w-6 h-6" /> }, // New Button
   ];
 
   return (
@@ -51,7 +52,7 @@ const AdminSidebar = () => {
         </ul>
       </nav>
 
-      {/* Sidebar Footer */}
+      {/* Sidebar Footer - Logout Button */}
       <div className="p-4 border-t border-gray-700">
         <button className="w-full bg-gray-800 py-2 rounded-lg hover:bg-gray-700 transition">
           Logout
