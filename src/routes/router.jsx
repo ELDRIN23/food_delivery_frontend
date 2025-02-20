@@ -22,6 +22,7 @@ import ViewRestauranst from "../pages/Admin/ViewRestauranst";
 import AdminLoginPage from "../pages/Admin/AdminLoginPage";
 import PaymentPage from "../pages/user/PaymentPage";
 import Account from "../pages/user/Account";
+import FetchUsers from "../pages/Admin/FetchUsers";
 
 const Router = () => {
   const { isLoggedIn ,role} = useContext(AuthContext);
@@ -66,6 +67,7 @@ const Router = () => {
         <Route path="view-restaurants" element={<ViewRestauranst />} />
         <Route path="products" element={<Products />} />
         <Route path="features" element={<Features />} />
+        <Route path="users" element={<FetchUsers />} />
       </Route>
 
       {/* Catch-all for unmatched routes */}
