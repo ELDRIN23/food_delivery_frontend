@@ -8,7 +8,8 @@ const AdminDishes = () => {
 
   const fetchDishes = async () => {
     try {
-      const response = await axiosInstance.get("/dishes/");
+      const response = await axiosInstance.get("/admin/fetch-dishes/");
+      console.log(response.data)
       setDishList(response?.data);
     } catch (err) {
       console.log(err);

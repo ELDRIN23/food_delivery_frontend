@@ -15,15 +15,22 @@ const Home = () => {
               Welcome, {name}!
             </h1>
             <p className="text-xl md:text-2xl lg:text-3xl font-semibold max-w-2xl">
-              Welcome to Foodie! At Foodie, your comfort is our pleasure. 
-              Explore a world of delicious flavors, curated recipes, and 
-              delightful dining experiences crafted just for you. Enjoy every bite!
+              Welcome to Foodie! At Foodie, your comfort is our pleasure.
+              Explore a world of delicious flavors, curated recipes, and
+              delightful dining experiences crafted just for you. Enjoy every
+              bite!
             </p>
 
             <ul className="mt-5 space-y-4 text-lg md:text-xl lg:text-2xl font-bold">
-              <li className="flex items-center justify-center gap-3">✅ Fresh & Curated Recipes</li>
-              <li className="flex items-center justify-center gap-3">✅ Personalized Recommendations</li>
-              <li className="flex items-center justify-center gap-3">✅ Easy-to-Follow Cooking Guides</li>
+              <li className="flex items-center justify-center gap-3">
+                ✅ Fresh & Curated Recipes
+              </li>
+              <li className="flex items-center justify-center gap-3">
+                ✅ Personalized Recommendations
+              </li>
+              <li className="flex items-center justify-center gap-3">
+                ✅ Easy-to-Follow Cooking Guides
+              </li>
             </ul>
 
             <div className="mt-8 w-full md:w-8/12">
@@ -41,12 +48,6 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
-
-
-
 
 // import React, { useContext } from "react";
 // import { Carousel } from "../../components/User/Carousel";
@@ -94,8 +95,3 @@ export default Home;
 // };
 
 // export default Home;
-
-
-
-
-

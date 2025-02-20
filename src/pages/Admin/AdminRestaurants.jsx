@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { axiosInstance } from '../../config/axiosInstance';
 
 function AddRestaurant() {
   const [formData, setFormData] = useState({
@@ -20,9 +21,28 @@ function AddRestaurant() {
     setFormData({ ...formData, image: e.target.files[0] });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Restaurant Data:', formData);
+    
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('adders', formData.address);
+    data.append('phone', formData.phone);
+    data.append('rating', formData.rating);
+    data.append('menu', formData.menu);
+    data.append('operating_hours', formData.operating_hours);
+    data.append('image', formData.image);
+
+    try {
+      const res = await axiosInstance.post('/resturant/add', data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      console.log(res.data);
+      alert('Restaurant added successfully!');
+    } catch (error) {
+      console.error(error);
+      alert('Failed to add restaurant.');
+    }
   };
 
   return (

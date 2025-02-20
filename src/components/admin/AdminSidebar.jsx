@@ -1,13 +1,26 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaUtensils, FaUsers } from "react-icons/fa";
 import { MdRestaurantMenu } from "react-icons/md";
 import { LayoutDashboard, Menu, Settings, X } from "lucide-react";
+import { AuthContext } from "../../context/AuthContext";
 
 const AdminSidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const navigate = useNavigate()
   const location = useLocation();
+  const { isLoggedIn, setIsLoggedIn, setRole, setName } =
+  useContext(AuthContext);
 
+const handleLogout = () => {
+  setIsLoggedIn(false);
+  setRole("guest");
+  setName("Guest");
+  localStorage.removeItem("auth");
+  localStorage.removeItem("role");
+  localStorage.removeItem("name");
+  navigate("/admin-login"); // ✅ Redirect to home page after logout
+};
   const menuItems = [
     { name: "Dashboard", path: "/admin", icon: <LayoutDashboard className="w-6 h-6" /> },
     { name: "Restaurant", path: "/admin/restaurants", icon: <MdRestaurantMenu className="w-6 h-6" /> },
@@ -54,7 +67,7 @@ const AdminSidebar = () => {
 
       {/* Sidebar Footer - Logout Button */}
       <div className="p-4 border-t border-gray-700">
-        <button className="w-full bg-gray-800 py-2 rounded-lg hover:bg-gray-700 transition">
+        <button onClick={handleLogout} className="w-full bg-gray-800 py-2 rounded-lg hover:bg-gray-700 transition">
           Logout
         </button>
       </div>

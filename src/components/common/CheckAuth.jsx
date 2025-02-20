@@ -10,12 +10,12 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
     location.pathname !== "/signup" &&  
     location.pathname !== "/"
   ) {
-    return <Navigate to="/login" />;
+    return <Navigate to={user === "admin" ? "/admin-login" : "/login"} />;
   }
 
   if (
     isAuthenticated &&
-    (location.pathname === "/login" || location.pathname === "/signup")
+    (location.pathname === "/admin-login" || location.pathname === "/signup")
   ) {
     return <Navigate to={user === "admin" ? "/admin" : "/"} />;
   }
