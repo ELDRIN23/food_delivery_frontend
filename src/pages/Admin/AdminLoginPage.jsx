@@ -22,7 +22,9 @@ const AdminLoginPage = () => {
     
     try {
       const response = await axiosInstance.post('/admin/signin', formData);
+      console.log(response?.data)
       if (response.status === 200) {
+        localStorage.setItem("userToken", response?.data?.token)
         setRole(response?.data?.data?.role);
         setIsLoggedIn(true);
         setName(response?.data?.data?.name);
