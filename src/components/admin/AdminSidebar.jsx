@@ -26,7 +26,7 @@ const handleLogout = () => {
     { name: " Add Restaurant", path: "/admin/restaurants", icon: <MdRestaurantMenu className="w-6 h-6" /> },
     { name: "Users", path: "/admin/users", icon: <FaUsers className="w-6 h-6" /> },
     { name: "Dishes", path: "/admin/dishes", icon: <FaUtensils className="w-6 h-6" /> },
-    // { name: "Settings", path: "/admin/settings", icon: <Settings className="w-6 h-6" /> },
+    { name: "Add Dishes", path: "/admin/add-dishes", icon: <FaUtensils className="w-6 h-6" /> },
     { name: "View Restaurants", path: "/admin/view-restaurants", icon: <MdRestaurantMenu className="w-6 h-6" /> }, // New Button
   ];
 

@@ -9,7 +9,7 @@ const Cart = () => {
   const [totalAmount, setTotalAmount] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [finalAmount, setFinalAmount] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [loadingItem, setLoadingItem] = useState(null);
 
   // Fetch Cart Items from Backend
   useEffect(() => {
@@ -29,6 +29,7 @@ const Cart = () => {
 
   // Remove Item from Cart
   const removeFromCart = async (dishId) => {
+    setLoadingItem(dishId);
     try {
       const response = await deleteCartItem(dishId);
       if (response.status === 200) {
@@ -43,6 +44,8 @@ const Cart = () => {
       }
     } catch (error) {
       console.error("Error removing item:", error);
+    } finally {
+      setLoadingItem(null);
     }
   };
 
@@ -66,8 +69,8 @@ const Cart = () => {
 
   // Update Quantity
   const handleUpdateQuantity = async (qty, curDish) => {
-    if (loading) return;
-    setLoading(true);
+    if (loadingItem) return;
+    setLoadingItem(curDish.dish_id);
 
     if (curDish.quantity + qty === 0) {
       return removeFromCart(curDish.dish_id);
@@ -87,7 +90,7 @@ const Cart = () => {
     } catch (error) {
       console.error("Failed to update cart:", error);
     } finally {
-      setLoading(false);
+      setLoadingItem(null);
     }
   };
 
@@ -100,10 +103,12 @@ const Cart = () => {
           <p className="text-gray-500 text-lg">Your cart is empty</p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
-            {cartItems.map((item) => (
-              <div key={item?.dish_id} className="bg-gray-800 p-4 rounded-xl shadow-lg transition transform hover:scale-105">
+            {cartItems.map((item) => {
+              console.log(item)
+              return(
+              <div key={item?._id} className="bg-gray-800 p-4 rounded-xl shadow-lg transition transform hover:scale-105">
                 <figure>
-                  <img src={item?.image} alt="dish" className="w-full h-40 object-cover rounded-lg" />
+                  <img src={item?.dish_id.image} alt="dish" className="w-full h-40 object-cover rounded-lg" />
                 </figure>
                 <div className="mt-3">
                   <h1 className="text-xl font-semibold">{item?.dish_name}</h1>
@@ -113,14 +118,20 @@ const Cart = () => {
                   <div className="flex items-center mt-2">
                     <button
                       onClick={() => handleUpdateQuantity(-1, item)}
-                      className="px-3 py-1 bg-gray-600 rounded-l-lg hover:bg-gray-500"
+                      className={`px-3 py-1 bg-gray-600 rounded-l-lg hover:bg-gray-500 ${
+                        loadingItem === item.dish_id && "opacity-50 cursor-not-allowed"
+                      }`}
+                      disabled={loadingItem === item.dish_id}
                     >
                       -
                     </button>
                     <p className="px-4">{item.quantity}</p>
                     <button
                       onClick={() => handleUpdateQuantity(1, item)}
-                      className="px-3 py-1 bg-gray-600 rounded-r-lg hover:bg-gray-500"
+                      className={`px-3 py-1 bg-gray-600 rounded-r-lg hover:bg-gray-500 ${
+                        loadingItem === item.dish_id && "opacity-50 cursor-not-allowed"
+                      }`}
+                      disabled={loadingItem === item.dish_id}
                     >
                       +
                     </button>
@@ -130,12 +141,13 @@ const Cart = () => {
                   <button
                     className="w-full bg-red-500 text-white px-4 py-2 mt-2 rounded-lg hover:bg-red-600 transition duration-300"
                     onClick={() => removeFromCart(item?.dish_id)}
+                    disabled={loadingItem === item.dish_id}
                   >
-                    Remove from Cart
+                    {loadingItem === item.dish_id ? "Removing..." : "Remove from Cart"}
                   </button>
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         )}
       </div>

@@ -11,7 +11,7 @@ export const DishCards = ({ dishes }) => {
     setLoading(true);
 
     try {
-      await addToCart(dishes._id, dishes.name, 1, dishes.price);
+      await addToCart(dishes?._id, dishes?.name, 1, dishes?.price);
       navigate("/cart");
     } catch (error) {
       console.error("Failed to add to cart:", error);
