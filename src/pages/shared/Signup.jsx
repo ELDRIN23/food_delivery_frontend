@@ -10,7 +10,7 @@ const Signup = () => {
     email: "",
     password: "",
     phone: "",
-    profilePic: null,
+    image: null,
   });
 
   const { setRole, setIsLoggedIn, setName } = useContext(AuthContext);
@@ -22,7 +22,7 @@ const Signup = () => {
     const { name, value, files } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "profilePic" ? files[0] : value,
+      [name]: name === "image" ? files[0] : value,
     }));
   };
 
@@ -38,7 +38,10 @@ const Signup = () => {
       });
 
       const response = await axiosInstance.post("/user/signup", data);
+      console.log(response.data.data.token)
+
       if (response.status === 201) {
+        localStorage.setItem("userToken", response?.data?.data?.token)
         setRole(response.data.data.role);
         setIsLoggedIn(true);
         setName(response.data.data.name);
@@ -71,7 +74,7 @@ const Signup = () => {
           ))}
           <input
             type="file"
-            name="profilePic"
+            name="image"
             accept="image/*"
             onChange={handleChange}
             className="w-full border p-2 rounded focus:ring-2 focus:ring-blue-400"

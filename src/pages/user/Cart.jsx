@@ -33,8 +33,8 @@ const Cart = () => {
     try {
       const response = await deleteCartItem(dishId);
       if (response.status === 200) {
-        setCartItems((prevItems) => prevItems.filter((item) => item?.dish_id !== dishId));
-        const removedItem = cartItems.find((item) => item?.dish_id === dishId);
+        setCartItems((prevItems) => prevItems.filter((item) => item?.dish_id._id  !== dishId));
+        const removedItem = cartItems.find((item) => item?.dish_id._id  === dishId);
         if (removedItem) {
           setTotalAmount((prev) => prev - removedItem.price_per_item * removedItem.quantity);
           setFinalAmount((prev) => prev - removedItem.price_per_item * removedItem.quantity);
@@ -70,17 +70,17 @@ const Cart = () => {
   // Update Quantity
   const handleUpdateQuantity = async (qty, curDish) => {
     if (loadingItem) return;
-    setLoadingItem(curDish.dish_id);
+    setLoadingItem(curDish.dish_id._id);
 
     if (curDish.quantity + qty === 0) {
-      return removeFromCart(curDish.dish_id);
+      return removeFromCart(curDish.dish_id._id);
     }
 
     try {
-      await addToCart(curDish.dish_id, curDish.dish_name, qty, curDish.price_per_item);
+      await addToCart(curDish.dish_id._id, curDish.dish_name, qty, curDish.price_per_item);
       setCartItems((prevItems) =>
         prevItems.map((item) =>
-          item.dish_id === curDish.dish_id
+          item.dish_id._id  === curDish.dish_id._id
             ? { ...item, quantity: item.quantity + qty }
             : item
         )
@@ -119,9 +119,9 @@ const Cart = () => {
                     <button
                       onClick={() => handleUpdateQuantity(-1, item)}
                       className={`px-3 py-1 bg-gray-600 rounded-l-lg hover:bg-gray-500 ${
-                        loadingItem === item.dish_id && "opacity-50 cursor-not-allowed"
+                        loadingItem === item.dish_id._id  && "opacity-50 cursor-not-allowed"
                       }`}
-                      disabled={loadingItem === item.dish_id}
+                      disabled={loadingItem === item.dish_id._id}
                     >
                       -
                     </button>
@@ -129,9 +129,9 @@ const Cart = () => {
                     <button
                       onClick={() => handleUpdateQuantity(1, item)}
                       className={`px-3 py-1 bg-gray-600 rounded-r-lg hover:bg-gray-500 ${
-                        loadingItem === item.dish_id && "opacity-50 cursor-not-allowed"
+                        loadingItem === item.dish_id._id  && "opacity-50 cursor-not-allowed"
                       }`}
-                      disabled={loadingItem === item.dish_id}
+                      disabled={loadingItem === item.dish_id._id}
                     >
                       +
                     </button>
@@ -140,10 +140,10 @@ const Cart = () => {
                   {/* Remove Button */}
                   <button
                     className="w-full bg-red-500 text-white px-4 py-2 mt-2 rounded-lg hover:bg-red-600 transition duration-300"
-                    onClick={() => removeFromCart(item?.dish_id)}
-                    disabled={loadingItem === item.dish_id}
+                    onClick={() => removeFromCart(item?.dish_id._id)}
+                    disabled={loadingItem === item.dish_id._id}
                   >
-                    {loadingItem === item.dish_id ? "Removing..." : "Remove from Cart"}
+                    {loadingItem === item.dish_id._id  ? "Removing..." : "Remove from Cart"}
                   </button>
                 </div>
               </div>

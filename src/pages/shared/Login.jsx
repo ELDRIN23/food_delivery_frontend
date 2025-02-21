@@ -22,8 +22,9 @@ const Login = () => {
     
     try {
       const response = await axiosInstance.post('/user/login', formData);
-
       if (response.status === 200) {
+        console.log(response.data.token)
+        localStorage.setItem("userToken", response?.data?.token)
         setRole(response?.data?.user?.role);
         setIsLoggedIn(true);
         setName(response?.data?.user?.name);

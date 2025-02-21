@@ -23,6 +23,7 @@ export const Header = () => {
     localStorage.removeItem("auth");
     localStorage.removeItem("role");
     localStorage.removeItem("name");
+    localStorage.removeItem("userToken");
     navigate("/");
   };
 
