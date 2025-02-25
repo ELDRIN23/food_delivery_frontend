@@ -76,3 +76,93 @@ const handleLogout = () => {
 };
 
 export default AdminSidebar;
+
+
+
+
+// import React, { useContext, useState } from "react";
+// import { Link, useLocation, useNavigate } from "react-router-dom";
+// import { FaUtensils, FaUsers } from "react-icons/fa";
+// import { MdRestaurantMenu } from "react-icons/md";
+// import { LayoutDashboard, Menu, Settings, X } from "lucide-react";
+// import { AuthContext } from "../../context/AuthContext";
+
+// const AdminSidebar = () => {
+//   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+//   const navigate = useNavigate();
+//   const location = useLocation();
+//   const { setIsLoggedIn, setRole, setName } = useContext(AuthContext);
+
+//   const handleLogout = () => {
+//     setIsLoggedIn(false);
+//     setRole("guest");
+//     setName("Guest");
+//     localStorage.removeItem("auth");
+//     localStorage.removeItem("role");
+//     localStorage.removeItem("name");
+//     navigate("/admin-login");
+//   };
+
+//   const menuItems = [
+//     { name: "Dashboard", path: "/admin", icon: <LayoutDashboard className="w-6 h-6" /> },
+//     { name: "Add Restaurant", path: "/admin/restaurants", icon: <MdRestaurantMenu className="w-6 h-6" /> },
+//     { name: "Users", path: "/admin/users", icon: <FaUsers className="w-6 h-6" /> },
+//     { name: "Dishes", path: "/admin/dishes", icon: <FaUtensils className="w-6 h-6" /> },
+//     { name: "Add Dishes", path: "/admin/add-dishes", icon: <FaUtensils className="w-6 h-6" /> },
+//     { name: "View Restaurants", path: "/admin/view-restaurants", icon: <MdRestaurantMenu className="w-6 h-6" /> },
+//   ];
+
+//   return (
+//     <>
+//       {/* Mobile Toggle Button */}
+//       <button
+//         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+//         className="absolute top-4 left-4 bg-gray-900 text-white p-2 rounded-md md:hidden z-50"
+//       >
+//         {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+//       </button>
+
+//       <div
+//         className={`${
+//           isSidebarOpen ? "w-64" : "w-20"
+//         } h-screen bg-gradient-to-b from-gray-900 to-gray-700 text-white shadow-2xl transition-all duration-300 flex flex-col fixed md:relative z-40`}
+//       >
+//         {/* Sidebar Header */}
+//         <div className="flex items-center justify-between p-5 border-b border-gray-700">
+//           <h1 className={`text-2xl font-semibold ${isSidebarOpen ? "block" : "hidden"}`}>Admin Panel</h1>
+//           <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="text-gray-300 hover:text-white hidden md:block">
+//             {isSidebarOpen ? <X size={28} /> : <Menu size={28} />}
+//           </button>
+//         </div>
+
+//         {/* Sidebar Menu */}
+//         <nav className="flex-1 p-4">
+//           <ul className="space-y-3">
+//             {menuItems.map((item, index) => (
+//               <li key={index}>
+//                 <Link
+//                   to={item.path}
+//                   className={`flex items-center p-3 rounded-lg text-lg transition duration-300 ${
+//                     location.pathname === item.path ? "bg-gray-800 shadow-md" : "hover:bg-gray-800"
+//                   }`}
+//                 >
+//                   {item.icon}
+//                   <span className={`${isSidebarOpen ? "ml-4" : "hidden md:block"}`}>{item.name}</span>
+//                 </Link>
+//               </li>
+//             ))}
+//           </ul>
+//         </nav>
+
+//         {/* Sidebar Footer - Logout Button */}
+//         <div className="p-4 border-t border-gray-700">
+//           <button onClick={handleLogout} className="w-full bg-gray-800 py-2 rounded-lg hover:bg-gray-700 transition">
+//             Logout
+//           </button>
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default AdminSidebar;
