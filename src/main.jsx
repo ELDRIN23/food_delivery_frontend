@@ -6,7 +6,7 @@ import AuthProvider from "./context/AuthContext"; // Make sure the path is corre
 import "./index.css";
 // import  CartProvider from "./context/CartContext";
 import { CartProvider } from "./context/CartContext";
-
+// y
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <AuthProvider>
